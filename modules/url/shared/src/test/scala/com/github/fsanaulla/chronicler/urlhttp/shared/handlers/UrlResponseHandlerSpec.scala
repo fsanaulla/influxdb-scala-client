@@ -27,8 +27,7 @@ import requests.{Response, ResponseBlob}
 
 import scala.language.implicitConversions
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 10.08.17
   */

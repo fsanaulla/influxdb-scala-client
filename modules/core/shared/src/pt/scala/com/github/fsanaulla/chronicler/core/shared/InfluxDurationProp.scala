@@ -11,19 +11,16 @@ class InfluxDurationProp extends AnyFlatSpec with Checkers {
 
   "InfluxDuration" should "build duration from Int" in check {
     (w: Int, d: Int, h: Int, m: Int, s: Int) =>
-
       val implVal = w.weeks + d.days + h.hours + m.minutes + s.seconds
-      val expVal = toInfluxDuration(w, d, h, m, s)
-
-    implVal == expVal
-  }
-
-  it should "build duration from Long" in check {
-    (w: Long, d: Long, h: Long, m: Long, s: Long) =>
-
-      val implVal = w.weeks + d.days + h.hours + m.minutes + s.seconds
-      val expVal = toInfluxDuration(w, d, h, m, s)
+      val expVal  = toInfluxDuration(w, d, h, m, s)
 
       implVal == expVal
+  }
+
+  it should "build duration from Long" in check { (w: Long, d: Long, h: Long, m: Long, s: Long) =>
+    val implVal = w.weeks + d.days + h.hours + m.minutes + s.seconds
+    val expVal  = toInfluxDuration(w, d, h, m, s)
+
+    implVal == expVal
   }
 }

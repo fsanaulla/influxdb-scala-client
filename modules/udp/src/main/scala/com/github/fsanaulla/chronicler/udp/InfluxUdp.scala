@@ -16,14 +16,13 @@
 
 package com.github.fsanaulla.chronicler.udp
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 14.03.18
   */
 object InfluxUdp {
 
-  /***
+  /** *
     * Constructor for creating UDP client
     *
     * @param host - InfluxDB host value

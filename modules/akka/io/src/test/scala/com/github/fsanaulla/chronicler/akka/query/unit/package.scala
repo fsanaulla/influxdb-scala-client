@@ -39,8 +39,8 @@ package object unit {
 
   def queryTester(path: String, queryParams: List[(String, String)]): String = {
     val s = queryParams
-      .map {
-        case (k, v) => s"$k=${v.encode}"
+      .map { case (k, v) =>
+        s"$k=${v.encode}"
       }
       .mkString("&")
 

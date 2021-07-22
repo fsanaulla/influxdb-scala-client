@@ -26,8 +26,7 @@ import com.github.fsanaulla.chronicler.core.model.{InfluxWriter, Point}
 import scala.io.Source
 import scala.util.{Failure, Try}
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 27.08.17
   */
@@ -54,8 +53,7 @@ final class InfluxUDPClient(host: String, port: Int) extends AutoCloseable {
       measurement: String,
       entity: T,
       charset: Charset = StandardCharsets.UTF_8
-    )(implicit writer: InfluxWriter[T]
-    ): Try[Unit] = {
+  )(implicit writer: InfluxWriter[T]): Try[Unit] = {
     BodyBuilder.stringBodyBuilder.fromT(measurement, entity) match {
       case Left(ex) => scala.util.Failure(ex)
       case Right(r) =>
@@ -67,8 +65,7 @@ final class InfluxUDPClient(host: String, port: Int) extends AutoCloseable {
       measurement: String,
       entities: Seq[T],
       charset: Charset = StandardCharsets.UTF_8
-    )(implicit writer: InfluxWriter[T]
-    ): Try[Unit] = {
+  )(implicit writer: InfluxWriter[T]): Try[Unit] = {
     BodyBuilder.stringBodyBuilder.fromSeqT(measurement, entities) match {
       case Left(ex) => Failure(ex)
       case Right(r) =>

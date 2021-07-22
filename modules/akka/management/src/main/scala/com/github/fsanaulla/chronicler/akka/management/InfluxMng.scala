@@ -24,15 +24,13 @@ import com.github.fsanaulla.chronicler.core.model.InfluxCredentials
 
 import scala.concurrent.ExecutionContext
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 15.03.18
   */
 object InfluxMng {
 
-  /**
-    * Retrieve InfluxDB management client, without IO functionality
+  /** Retrieve InfluxDB management client, without IO functionality
     *
     * @param host         - hostname
     * @param port         - port value
@@ -48,13 +46,10 @@ object InfluxMng {
       credentials: Option[InfluxCredentials] = None,
       httpsContext: Option[HttpsConnectionContext] = None,
       terminateActorSystem: Boolean = false
-    )(implicit ex: ExecutionContext,
-      system: ActorSystem
-    ): AkkaManagementClient =
+  )(implicit ex: ExecutionContext, system: ActorSystem): AkkaManagementClient =
     new AkkaManagementClient(host, port, credentials, httpsContext, terminateActorSystem)
 
-  /**
-    * Retrieve management InfluxDB client, without IO functionality using configuration object
+  /** Retrieve management InfluxDB client, without IO functionality using configuration object
     *
     * @param conf        - configuration object
     * @param system      - actor system, by default will create new one
@@ -63,9 +58,7 @@ object InfluxMng {
     */
   def apply(
       conf: InfluxConfig
-    )(implicit ex: ExecutionContext,
-      system: ActorSystem
-    ): AkkaManagementClient =
+  )(implicit ex: ExecutionContext, system: ActorSystem): AkkaManagementClient =
     apply(
       conf.host,
       conf.port,

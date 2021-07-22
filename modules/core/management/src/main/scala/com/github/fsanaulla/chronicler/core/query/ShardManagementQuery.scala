@@ -18,8 +18,7 @@ package com.github.fsanaulla.chronicler.core.query
 
 import com.github.fsanaulla.chronicler.core.components.QueryBuilder
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 19.08.17
   */

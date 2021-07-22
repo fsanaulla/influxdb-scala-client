@@ -33,8 +33,8 @@ import scala.reflect.ClassTag
 
 class AkkaResponseHandler(
     jsonHandler: JsonHandler[Future, HttpResponse]
-  )(implicit ex: ExecutionContext)
-  extends ResponseHandler[Future, HttpResponse](jsonHandler) {
+)(implicit ex: ExecutionContext)
+    extends ResponseHandler[Future, HttpResponse](jsonHandler) {
 
   final def queryChunkedResultJson(response: HttpResponse): Source[ErrorOr[Array[JArray]], Any] = {
     response.entity.dataBytes
@@ -42,19 +42,17 @@ class AkkaResponseHandler(
       .map(_.utf8String)
       .map(JParser.parseFromStringEither)
       .map(
-        _.flatMapRight(
-          jv =>
-            jsonHandler
-              .queryResult(jv)
-              .toRight[Throwable](new ParsingException("Can't extract query result from response"))
+        _.flatMapRight(jv =>
+          jsonHandler
+            .queryResult(jv)
+            .toRight[Throwable](new ParsingException("Can't extract query result from response"))
         )
       )
   }
 
   final def queryChunkedResult[T: ClassTag](
       response: HttpResponse
-    )(implicit rd: InfluxReader[T]
-    ): Source[ErrorOr[Array[T]], Any] = {
+  )(implicit rd: InfluxReader[T]): Source[ErrorOr[Array[T]], Any] = {
     queryChunkedResultJson(response)
       .map(_.flatMapRight { arr =>
         either.array(arr.map(rd.read))

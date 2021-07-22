@@ -35,7 +35,9 @@ class InfluxReaderBenchmark {
 
   @Benchmark
   def averageCustomEpochTimestampUnsafe(state: CustomEpochReader): Unit =
-    state.reader.readUnsafe(JArray(Array(LongNum(1438715114318570484L), JNum(4), JString("Fz"), JNull)))
+    state.reader.readUnsafe(
+      JArray(Array(LongNum(1438715114318570484L), JNum(4), JString("Fz"), JNull))
+    )
 
   // safe
   @Benchmark
@@ -44,7 +46,9 @@ class InfluxReaderBenchmark {
 
   @Benchmark
   def averageUtcTimestamp(state: UtcReader): Unit =
-    state.reader.read(JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull)))
+    state.reader.read(
+      JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
+    )
 
   @Benchmark
   def averageGeneralEpochTimestamp(state: GeneralEpochReader): Unit =
@@ -52,48 +56,65 @@ class InfluxReaderBenchmark {
 
   @Benchmark
   def averageGeneralUtcTimestamp(state: GeneralUtcReader): Unit =
-    state.reader.read(JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull)))
+    state.reader.read(
+      JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
+    )
 
   // unsafe
   @Benchmark
   def averageEpochTimestampUnsafe(state: EpochReader): Unit =
-    state.reader.readUnsafe(JArray(Array(LongNum(1438715114318570484L), JNum(4), JString("Fz"), JNull)))
+    state.reader.readUnsafe(
+      JArray(Array(LongNum(1438715114318570484L), JNum(4), JString("Fz"), JNull))
+    )
 
   @Benchmark
   def averageUtcTimestampUnsafe(state: UtcReader): Unit =
-    state.reader.readUnsafe(JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull)))
+    state.reader.readUnsafe(
+      JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
+    )
 
   @Benchmark
   def averageGeneralEpochTimestampUnsafe(state: GeneralEpochReader): Unit =
-    state.reader.readUnsafe(JArray(Array(LongNum(1438715114318570484L), JNum(4), JString("Fz"), JNull)))
+    state.reader.readUnsafe(
+      JArray(Array(LongNum(1438715114318570484L), JNum(4), JString("Fz"), JNull))
+    )
 
   @Benchmark
   def averageGeneralUtcTimestampUnsafe(state: GeneralUtcReader): Unit =
-    state.reader.readUnsafe(JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull)))
+    state.reader.readUnsafe(
+      JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
+    )
 
 }
 
 object InfluxReaderBenchmark {
-  final case class Epoch(@tag name: String,
-                         @tag surname: Option[String],
-                         @field age: Int,
-                         @epoch @timestamp time: Long)
+  final case class Epoch(
+      @tag name: String,
+      @tag surname: Option[String],
+      @field age: Int,
+      @epoch @timestamp time: Long
+  )
 
-  final case class Utc(@tag name: String,
-                       @tag surname: Option[String],
-                       @field age: Int,
-                       @utc @timestamp time: String)
+  final case class Utc(
+      @tag name: String,
+      @tag surname: Option[String],
+      @field age: Int,
+      @utc @timestamp time: String
+  )
 
-  final case class GeneralEpoch(@tag name: String,
-                                @tag surname: Option[String],
-                                @field age: Int,
-                                @timestamp time: Long)
+  final case class GeneralEpoch(
+      @tag name: String,
+      @tag surname: Option[String],
+      @field age: Int,
+      @timestamp time: Long
+  )
 
-  final case class GeneralUtc(@tag name: String,
-                                @tag surname: Option[String],
-                                @field age: Int,
-                                @timestamp time: Long)
-
+  final case class GeneralUtc(
+      @tag name: String,
+      @tag surname: Option[String],
+      @field age: Int,
+      @timestamp time: Long
+  )
 
   @State(Scope.Benchmark)
   class EpochReader {
@@ -146,7 +167,7 @@ object InfluxReaderBenchmark {
             arr(0).asLong
           )
         ) match {
-          case Success(value) => Right(value)
+          case Success(value)     => Right(value)
           case Failure(exception) => Left(exception)
         }
       }

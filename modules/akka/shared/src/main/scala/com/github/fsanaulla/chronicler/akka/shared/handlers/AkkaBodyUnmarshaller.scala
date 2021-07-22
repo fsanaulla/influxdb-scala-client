@@ -28,13 +28,11 @@ import org.typelevel.jawn.ast.{JParser, JValue}
 import scala.concurrent.{ExecutionContext, Future}
 
 final class AkkaBodyUnmarshaller(compressed: Boolean)
-  extends Unmarshaller[HttpEntity, ErrorOr[JValue]] {
+    extends Unmarshaller[HttpEntity, ErrorOr[JValue]] {
 
   override def apply(
       value: HttpEntity
-    )(implicit ec: ExecutionContext,
-      mat: Materializer
-    ): Future[ErrorOr[JValue]] = {
+  )(implicit ec: ExecutionContext, mat: Materializer): Future[ErrorOr[JValue]] = {
 
     // get encoding from response content type, otherwise use UTF-8 as default
     val encoding = value.contentType.charsetOption

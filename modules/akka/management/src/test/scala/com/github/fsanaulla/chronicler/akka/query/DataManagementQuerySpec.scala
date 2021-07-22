@@ -23,8 +23,7 @@ import com.github.fsanaulla.chronicler.core.query.DataManagementQuery
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 27.07.17
   */
@@ -97,7 +96,14 @@ class DataManagementQuerySpec extends AnyFlatSpec with Matchers with DataManagem
   }
 
   it should "generate correct 'show tag-value' query" in new AuthEnv {
-    showTagValuesQuery(testDb, testMeasurement, Seq("key"), testWhereClause, testLimit, testOffset) shouldEqual
+    showTagValuesQuery(
+      testDb,
+      testMeasurement,
+      Seq("key"),
+      testWhereClause,
+      testLimit,
+      testOffset
+    ) shouldEqual
       queryTesterAuth(
         s"SHOW TAG VALUES ON $testDb FROM $testMeasurement WITH KEY = key WHERE ${testWhereClause.get} LIMIT ${testLimit.get} OFFSET ${testOffset.get}"
       )(credentials.get)
@@ -124,7 +130,13 @@ class DataManagementQuerySpec extends AnyFlatSpec with Matchers with DataManagem
       s"CREATE DATABASE $testDb WITH DURATION 3d"
     )
 
-    createDatabaseQuery(testDb, Some("3d"), Some(2), Some("1d"), Some("testName")) shouldEqual queryTester(
+    createDatabaseQuery(
+      testDb,
+      Some("3d"),
+      Some(2),
+      Some("1d"),
+      Some("testName")
+    ) shouldEqual queryTester(
       s"CREATE DATABASE $testDb WITH DURATION 3d REPLICATION 2 SHARD DURATION 1d NAME testName"
     )
   }
@@ -166,16 +178,36 @@ class DataManagementQuerySpec extends AnyFlatSpec with Matchers with DataManagem
     showTagKeysQuery(testDb, testMeasurement, None, None, None) shouldEqual queryTester(
       s"SHOW TAG KEYS ON $testDb FROM $testMeasurement"
     )
-    showTagKeysQuery(testDb, testMeasurement, testWhereClause, testLimit, None) shouldEqual queryTester(
+    showTagKeysQuery(
+      testDb,
+      testMeasurement,
+      testWhereClause,
+      testLimit,
+      None
+    ) shouldEqual queryTester(
       s"SHOW TAG KEYS ON $testDb FROM $testMeasurement WHERE ${testWhereClause.get} LIMIT ${testLimit.get}"
     )
   }
 
   it should "generate correct 'show tag-value' query without auth" in new NonAuthEnv {
-    showTagValuesQuery(testDb, testMeasurement, Seq("key"), None, None, None) shouldEqual queryTester(
+    showTagValuesQuery(
+      testDb,
+      testMeasurement,
+      Seq("key"),
+      None,
+      None,
+      None
+    ) shouldEqual queryTester(
       s"SHOW TAG VALUES ON $testDb FROM $testMeasurement WITH KEY = key"
     )
-    showTagValuesQuery(testDb, testMeasurement, Seq("key", "key1"), testWhereClause, None, None) shouldEqual queryTester(
+    showTagValuesQuery(
+      testDb,
+      testMeasurement,
+      Seq("key", "key1"),
+      testWhereClause,
+      None,
+      None
+    ) shouldEqual queryTester(
       s"SHOW TAG VALUES ON $testDb FROM $testMeasurement WITH KEY IN (key,key1) WHERE ${testWhereClause.get}"
     )
   }

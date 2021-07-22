@@ -14,32 +14,32 @@ object SampleEntitys {
 
   val largeMultiJsonEntity = Array(
     Array(
-      JArray(Array(
-        JNum(currentNanoTime),
-        JNum(54),
-        JString("Martin"),
-        JString("Odersky"),
-        JString("Male"))),
-      JArray(Array(
-        JNum(currentNanoTime),
-        JNum(36),
-        JString("Jame"),
-        JString("Franko"),
-        JString("Male"))),
-      JArray(Array(
-        JNum(currentNanoTime),
-        JNum(54),
-        JString("Martin"),
-        JString("Odersky"),
-        JString("Male")))
+      JArray(
+        Array(
+          JNum(currentNanoTime),
+          JNum(54),
+          JString("Martin"),
+          JString("Odersky"),
+          JString("Male")
+        )
+      ),
+      JArray(
+        Array(JNum(currentNanoTime), JNum(36), JString("Jame"), JString("Franko"), JString("Male"))
+      ),
+      JArray(
+        Array(
+          JNum(currentNanoTime),
+          JNum(54),
+          JString("Martin"),
+          JString("Odersky"),
+          JString("Male")
+        )
+      )
     ),
     Array(
-      JArray(Array(
-        JNum(currentNanoTime),
-        JNum(36),
-        JString("Jame"),
-        JString("Franko"),
-        JString("Male")))
+      JArray(
+        Array(JNum(currentNanoTime), JNum(36), JString("Jame"), JString("Franko"), JString("Male"))
+      )
     )
   )
 }

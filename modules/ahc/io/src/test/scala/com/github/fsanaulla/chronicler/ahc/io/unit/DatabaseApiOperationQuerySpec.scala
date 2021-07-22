@@ -26,8 +26,7 @@ import org.scalatest.matchers.should.Matchers
 
 import scala.language.implicitConversions
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 27.07.17
   */

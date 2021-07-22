@@ -24,8 +24,7 @@ import com.github.fsanaulla.chronicler.core.query.UserManagementQuery
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 21.08.17
   */

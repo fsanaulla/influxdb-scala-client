@@ -23,24 +23,21 @@ import org.typelevel.jawn.ast.JArray
 
 import scala.annotation.implicitNotFound
 
-/**
-  * When trying deserialize JSON from influx, don't forget that influx sort field in db alphabetically.
+/** When trying deserialize JSON from influx, don't forget that influx sort field in db alphabetically.
   */
 @implicitNotFound(
   "No InfluxReader found for type ${T}. Try to implement an implicit InfluxReader for this type."
 )
 trait InfluxReader[T] extends JSerializable {
 
-  /**
-    * Read wrapping in Either[Throwable, T]
+  /** Read wrapping in Either[Throwable, T]
     *
     * @param js - jarray
     * @return   - Either[Throwable, T]
     */
   def read(js: JArray): ErrorOr[T]
 
-  /**
-    * Read unsafe throwing exception
+  /** Read unsafe throwing exception
     *
     * @param js - jarray
     * @return   - T

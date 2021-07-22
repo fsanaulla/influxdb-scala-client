@@ -32,8 +32,7 @@ import org.typelevel.jawn.ast._
 
 import scala.concurrent.ExecutionContextExecutor
 
-/**
-  * Created by fayaz on 12.07.17.
+/** Created by fayaz on 12.07.17.
   */
 class AkkaResponseHandlerSpec
     extends TestKit(ActorSystem())
@@ -169,8 +168,7 @@ class AkkaResponseHandlerSpec
   it should "cq unpacking" in {
 
     val cqResponse = HttpResponse(
-      entity =
-        """{
+      entity = """{
       "results": [
         {
           "statement_id": 0,

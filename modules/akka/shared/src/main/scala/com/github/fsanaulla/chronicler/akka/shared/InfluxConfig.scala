@@ -25,4 +25,5 @@ final case class InfluxConfig(
     credentials: Option[InfluxCredentials] = None,
     compress: Boolean = false,
     httpsContext: Option[HttpsConnectionContext] = None,
-    terminateActorSystem: Boolean = false)
+    terminateActorSystem: Boolean = false
+)

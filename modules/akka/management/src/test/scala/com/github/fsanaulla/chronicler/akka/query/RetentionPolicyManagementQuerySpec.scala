@@ -26,8 +26,7 @@ import org.scalatest.matchers.should.Matchers
 
 import scala.language.postfixOps
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 27.07.17
   */
@@ -81,7 +80,14 @@ class RetentionPolicyManagementQuerySpec
   }
 
   it should "update retention policy" in new AuthEnv {
-    updateRPQuery(testRPName, testDBName, Some(4 hours), Some(3), Some(4 hours), default = true) shouldEqual
+    updateRPQuery(
+      testRPName,
+      testDBName,
+      Some(4 hours),
+      Some(3),
+      Some(4 hours),
+      default = true
+    ) shouldEqual
       queryTesterAuth(
         s"ALTER RETENTION POLICY $testRPName ON $testDBName DURATION 4h REPLICATION 3 SHARD DURATION 4h DEFAULT"
       )(credentials.get)

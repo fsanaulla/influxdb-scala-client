@@ -23,7 +23,7 @@ import com.github.fsanaulla.chronicler.core.implicits._
 import com.github.fsanaulla.chronicler.core.model._
 import com.github.fsanaulla.chronicler.core.query.SubscriptionsManagementQuery
 
-/***
+/** *
   * Provide support of subscription api
   *
   * @tparam F - execution effect type
@@ -41,8 +41,7 @@ trait SubscriptionManagement[F[_], G[_], R, U, E] extends SubscriptionsManagemen
   implicit val F: Functor[F]
   implicit val FK: FunctionK[G, F]
 
-  /**
-    * Create subscription
+  /** Create subscription
     * @param subsName        - subscription name
     * @param dbName          - database name
     * @param rpName          - retention policy name
@@ -56,7 +55,7 @@ trait SubscriptionManagement[F[_], G[_], R, U, E] extends SubscriptionsManagemen
       rpName: String = "autogen",
       destinationType: Destination,
       addresses: Seq[String]
-    ): F[ErrorOr[ResponseCode]] =
+  ): F[ErrorOr[ResponseCode]] =
     F.flatMap(
       re.get(
         createSubscriptionQuery(subsName, dbName, rpName, destinationType, addresses),
@@ -69,7 +68,7 @@ trait SubscriptionManagement[F[_], G[_], R, U, E] extends SubscriptionsManagemen
       subName: String,
       dbName: String,
       rpName: String
-    ): F[ErrorOr[ResponseCode]] =
+  ): F[ErrorOr[ResponseCode]] =
     F.flatMap(
       re.get(dropSubscriptionQuery(subName, dbName, rpName), compress = false)
     )(resp => FK(rh.writeResult(resp)))

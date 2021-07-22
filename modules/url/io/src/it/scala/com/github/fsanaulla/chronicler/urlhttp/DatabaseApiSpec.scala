@@ -15,8 +15,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.{EitherValues, TryValues}
 import org.typelevel.jawn.ast.{JArray, JNum, JString, JValue}
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 02.03.18
   */
@@ -140,12 +139,11 @@ class DatabaseApiSpec
     )
 
     db.bulkWriteNative(
-        Seq(
-          "test4,sex=Male,firstName=Jon,lastName=Snow age=24",
-          "test4,sex=Female,firstName=Deny,lastName=Targaryen age=25"
-        )
+      Seq(
+        "test4,sex=Male,firstName=Jon,lastName=Snow age=24",
+        "test4,sex=Female,firstName=Deny,lastName=Targaryen age=25"
       )
-      .success
+    ).success
       .value
       .value shouldEqual 204
 

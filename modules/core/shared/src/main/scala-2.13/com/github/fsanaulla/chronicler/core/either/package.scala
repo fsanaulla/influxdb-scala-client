@@ -39,4 +39,3 @@ package object either {
       either.getOrElse(or)
   }
 }
-

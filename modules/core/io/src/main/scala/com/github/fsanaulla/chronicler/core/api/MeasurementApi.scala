@@ -26,24 +26,23 @@ import com.github.fsanaulla.chronicler.core.query.DatabaseOperationQuery
 
 import scala.reflect.ClassTag
 
-/**
-  * Main functionality for measurement api
+/** Main functionality for measurement api
   */
 class MeasurementApi[F[_], G[_], Resp, Uri, Body, A](
     dbName: String,
     measurementName: String,
     gzipped: Boolean
-  )(implicit qb: QueryBuilder[Uri],
+)(implicit
+    qb: QueryBuilder[Uri],
     bd: BodyBuilder[Body],
     re: RequestExecutor[F, Resp, Uri, Body],
     rh: ResponseHandler[G, Resp],
     F: Functor[F],
     FA: Failable[F],
-    FK: FunctionK[G, F])
-  extends DatabaseOperationQuery[Uri] {
+    FK: FunctionK[G, F]
+) extends DatabaseOperationQuery[Uri] {
 
-  /**
-    * Make single write
+  /** Make single write
     *
     * @param entity          - entity to write
     * @param consistency     - consistence level
@@ -57,8 +56,7 @@ class MeasurementApi[F[_], G[_], Resp, Uri, Body, A](
       consistency: Consistency = Consistencies.None,
       precision: Precision = Precisions.None,
       retentionPolicy: Option[String] = None
-    )(implicit wr: InfluxWriter[A]
-    ): F[ErrorOr[ResponseCode]] = {
+  )(implicit wr: InfluxWriter[A]): F[ErrorOr[ResponseCode]] = {
     val uri = write(dbName, consistency, precision, retentionPolicy)
 
     bd.fromT(measurementName, entity) match {
@@ -72,8 +70,7 @@ class MeasurementApi[F[_], G[_], Resp, Uri, Body, A](
     }
   }
 
-  /**
-    * Make bulk write
+  /** Make bulk write
     *
     * @param entities        - entities to write
     * @param consistency     - consistence level
@@ -87,8 +84,7 @@ class MeasurementApi[F[_], G[_], Resp, Uri, Body, A](
       consistency: Consistency = Consistencies.None,
       precision: Precision = Precisions.None,
       retentionPolicy: Option[String] = None
-    )(implicit writer: InfluxWriter[A]
-    ): F[ErrorOr[ResponseCode]] = {
+  )(implicit writer: InfluxWriter[A]): F[ErrorOr[ResponseCode]] = {
     val uri = write(dbName, consistency, precision, retentionPolicy)
 
     bd.fromSeqT(measurementName, entities) match {
@@ -106,9 +102,7 @@ class MeasurementApi[F[_], G[_], Resp, Uri, Body, A](
       query: String,
       epoch: Epoch = Epochs.None,
       pretty: Boolean = false
-    )(implicit rd: InfluxReader[A],
-      clsTag: ClassTag[A]
-    ): F[ErrorOr[Array[A]]] = {
+  )(implicit rd: InfluxReader[A], clsTag: ClassTag[A]): F[ErrorOr[Array[A]]] = {
     val uri = singleQuery(dbName, query, epoch, pretty)
     F.flatMap(re.get(uri, gzipped)) { resp =>
       F.map(FK(rh.queryResultJson(resp))) { ethResp =>

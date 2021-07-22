@@ -24,10 +24,12 @@ class InfluxWriterBenchmark {
 }
 
 object InfluxWriterBenchmark {
-  final case class Test(@tag name: String,
-                        @tag surname: Option[String],
-                        @field age: Int,
-                        @timestamp time: Long)
+  final case class Test(
+      @tag name: String,
+      @tag surname: Option[String],
+      @field age: Int,
+      @timestamp time: Long
+  )
 
   @State(Scope.Benchmark)
   class CustomWriter {

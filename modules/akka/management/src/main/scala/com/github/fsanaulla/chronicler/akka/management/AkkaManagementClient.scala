@@ -34,12 +34,13 @@ final class AkkaManagementClient(
     credentials: Option[InfluxCredentials],
     httpsContext: Option[HttpsConnectionContext],
     terminateActorSystem: Boolean
-  )(implicit val ex: ExecutionContext,
+)(implicit
+    val ex: ExecutionContext,
     val system: ActorSystem,
     val F: Functor[Future],
-    val FK: FunctionK[Future, Future])
-  extends InfluxAkkaClient(terminateActorSystem, httpsContext)
-  with ManagementClient[Future, Future, HttpResponse, Uri, RequestEntity] {
+    val FK: FunctionK[Future, Future]
+) extends InfluxAkkaClient(terminateActorSystem, httpsContext)
+    with ManagementClient[Future, Future, HttpResponse, Uri, RequestEntity] {
 
   implicit val mat: ActorMaterializer  = ActorMaterializer()
   implicit val qb: AkkaQueryBuilder    = new AkkaQueryBuilder(schema, host, port, credentials)

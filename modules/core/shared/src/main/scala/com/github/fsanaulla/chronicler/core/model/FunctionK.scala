@@ -18,8 +18,7 @@ package com.github.fsanaulla.chronicler.core.model
 
 import com.github.fsanaulla.chronicler.core.alias.Id
 
-/**
-  * A FunctionK transforms values from one first-order-kinded type (a type that takes a single type parameter,
+/** A FunctionK transforms values from one first-order-kinded type (a type that takes a single type parameter,
   * such as List or Option) into another first-order-kinded type.
   * This transformation is universal, meaning that a FunctionK[List, Option] will translate all List[A] values into an Option[A]
   * value for all possible types of A. This explanation may be easier to understand if we first step back and talk about ordinary functions.

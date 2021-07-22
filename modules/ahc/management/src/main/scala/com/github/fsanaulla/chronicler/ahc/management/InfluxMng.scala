@@ -25,8 +25,7 @@ import scala.concurrent.ExecutionContext
 
 object InfluxMng {
 
-  /**
-    * Retrieve InfluxDB management client, without IO functionality
+  /** Retrieve InfluxDB management client, without IO functionality
     *
     * @param host              - hostname
     * @param port              - port value
@@ -40,12 +39,10 @@ object InfluxMng {
       port: Int = 8086,
       credentials: Option[InfluxCredentials] = None,
       asyncClientConfig: Option[AsyncHttpClientConfig] = None
-    )(implicit ex: ExecutionContext
-    ): AhcManagementClient =
+  )(implicit ex: ExecutionContext): AhcManagementClient =
     new AhcManagementClient(host, port, credentials, asyncClientConfig)
 
-  /**
-    * Retrieve management InfluxDB client, without management functionality using configuration object
+  /** Retrieve management InfluxDB client, without management functionality using configuration object
     *
     * @param conf - configuration object
     * @param ex   - implicit execution context, by default use standard one

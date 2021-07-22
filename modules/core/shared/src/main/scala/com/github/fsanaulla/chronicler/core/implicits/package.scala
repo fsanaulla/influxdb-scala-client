@@ -62,11 +62,11 @@ package object implicits {
 
     def read(js: JArray): ErrorOr[RetentionPolicyInfo] = js.vs match {
       case Array(
-          name: JValue,
-          duration: JValue,
-          shardGroupDuration: JValue,
-          replication: JValue,
-          default: JValue
+            name: JValue,
+            duration: JValue,
+            shardGroupDuration: JValue,
+            replication: JValue,
+            default: JValue
           ) =>
         Right(RetentionPolicyInfo(name, duration, shardGroupDuration, replication, default))
       case _ =>
@@ -75,11 +75,11 @@ package object implicits {
 
     override def readUnsafe(js: JArray): RetentionPolicyInfo = js.vs match {
       case Array(
-          name: JValue,
-          duration: JValue,
-          shardGroupDuration: JValue,
-          replication: JValue,
-          default: JValue
+            name: JValue,
+            duration: JValue,
+            shardGroupDuration: JValue,
+            replication: JValue,
+            default: JValue
           ) =>
         RetentionPolicyInfo(name, duration, shardGroupDuration, replication, default)
       case _ =>
@@ -142,14 +142,14 @@ package object implicits {
   implicit object ShardInfluxReader extends InfluxReader[Shard] {
     override def read(js: JArray): ErrorOr[Shard] = js.vs match {
       case Array(
-          shardId: JValue,
-          dbName: JValue,
-          rpName: JValue,
-          shardGroupId: JValue,
-          startTime: JValue,
-          endTime: JValue,
-          expiryTime: JValue,
-          owners: JValue
+            shardId: JValue,
+            dbName: JValue,
+            rpName: JValue,
+            shardGroupId: JValue,
+            startTime: JValue,
+            endTime: JValue,
+            expiryTime: JValue,
+            owners: JValue
           ) =>
         Right(Shard(shardId, dbName, rpName, shardGroupId, startTime, endTime, expiryTime, owners))
       case _ =>
@@ -158,14 +158,14 @@ package object implicits {
 
     override def readUnsafe(js: JArray): Shard = js.vs match {
       case Array(
-          shardId: JValue,
-          dbName: JValue,
-          rpName: JValue,
-          shardGroupId: JValue,
-          startTime: JValue,
-          endTime: JValue,
-          expiryTime: JValue,
-          owners: JValue
+            shardId: JValue,
+            dbName: JValue,
+            rpName: JValue,
+            shardGroupId: JValue,
+            startTime: JValue,
+            endTime: JValue,
+            expiryTime: JValue,
+            owners: JValue
           ) =>
         Shard(shardId, dbName, rpName, shardGroupId, startTime, endTime, expiryTime, owners)
       case _ =>
@@ -192,12 +192,12 @@ package object implicits {
   implicit object ShardGroupInfluxReader extends InfluxReader[ShardGroup] {
     override def read(js: JArray): ErrorOr[ShardGroup] = js.vs match {
       case Array(
-          shardId: JValue,
-          dbName: JValue,
-          rpName: JValue,
-          startTime: JValue,
-          endTime: JValue,
-          expiryTime: JValue
+            shardId: JValue,
+            dbName: JValue,
+            rpName: JValue,
+            startTime: JValue,
+            endTime: JValue,
+            expiryTime: JValue
           ) =>
         Right(ShardGroup(shardId, dbName, rpName, startTime, endTime, expiryTime))
       case _ =>
@@ -206,12 +206,12 @@ package object implicits {
 
     override def readUnsafe(js: JArray): ShardGroup = js.vs match {
       case Array(
-          shardId: JValue,
-          dbName: JValue,
-          rpName: JValue,
-          startTime: JValue,
-          endTime: JValue,
-          expiryTime: JValue
+            shardId: JValue,
+            dbName: JValue,
+            rpName: JValue,
+            startTime: JValue,
+            endTime: JValue,
+            expiryTime: JValue
           ) =>
         ShardGroup(shardId, dbName, rpName, startTime, endTime, expiryTime)
       case _ =>

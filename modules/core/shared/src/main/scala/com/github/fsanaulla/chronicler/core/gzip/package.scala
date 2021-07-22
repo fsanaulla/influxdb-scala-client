@@ -21,11 +21,11 @@ import java.util.zip.{GZIPInputStream, GZIPOutputStream}
 
 package object gzip {
 
-  /***
+  /** *
     * Compress the data, and return compressed byte array and it length
     *
     * @since - 0.5.5
-    * */
+    */
   def compress(data: Array[Byte]): (Int, Array[Byte]) = {
     val bArrOut    = new ByteArrayOutputStream()
     val gzippedOut = new GZIPOutputStream(bArrOut)

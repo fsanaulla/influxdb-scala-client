@@ -23,8 +23,7 @@ import com.github.fsanaulla.chronicler.core.query.DataManagementQuery
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 27.07.17
   */
@@ -91,7 +90,13 @@ class DataManagementQuerySpec extends AnyFlatSpec with Matchers with DataManagem
   }
 
   it should "generate correct 'show tag-key' query" in new AuthEnv {
-    showTagKeysQuery(testDb, testMeasurement, testWhereClause, testLimit, testOffset).mkUrl shouldEqual
+    showTagKeysQuery(
+      testDb,
+      testMeasurement,
+      testWhereClause,
+      testLimit,
+      testOffset
+    ).mkUrl shouldEqual
       queryTesterAuth(
         s"SHOW TAG KEYS ON $testDb FROM $testMeasurement WHERE ${testWhereClause.get} LIMIT ${testLimit.get} OFFSET ${testOffset.get}"
       )(credentials.get)
@@ -103,7 +108,14 @@ class DataManagementQuerySpec extends AnyFlatSpec with Matchers with DataManagem
   }
 
   it should "generate correct 'show tag-value' query" in new AuthEnv {
-    showTagValuesQuery(testDb, testMeasurement, Seq("key"), testWhereClause, testLimit, testOffset).mkUrl shouldEqual
+    showTagValuesQuery(
+      testDb,
+      testMeasurement,
+      Seq("key"),
+      testWhereClause,
+      testLimit,
+      testOffset
+    ).mkUrl shouldEqual
       queryTesterAuth(
         s"SHOW TAG VALUES ON $testDb FROM $testMeasurement WITH KEY = key WHERE ${testWhereClause.get} LIMIT ${testLimit.get} OFFSET ${testOffset.get}"
       )(credentials.get)
@@ -197,10 +209,24 @@ class DataManagementQuerySpec extends AnyFlatSpec with Matchers with DataManagem
   }
 
   it should "generate correct 'show tag-value' query without auth" in new NonAuthEnv {
-    showTagValuesQuery(testDb, testMeasurement, Seq("key"), None, None, None).mkUrl shouldEqual queryTester(
+    showTagValuesQuery(
+      testDb,
+      testMeasurement,
+      Seq("key"),
+      None,
+      None,
+      None
+    ).mkUrl shouldEqual queryTester(
       s"SHOW TAG VALUES ON $testDb FROM $testMeasurement WITH KEY = key"
     )
-    showTagValuesQuery(testDb, testMeasurement, Seq("key", "key1"), testWhereClause, None, None).mkUrl shouldEqual queryTester(
+    showTagValuesQuery(
+      testDb,
+      testMeasurement,
+      Seq("key", "key1"),
+      testWhereClause,
+      None,
+      None
+    ).mkUrl shouldEqual queryTester(
       s"SHOW TAG VALUES ON $testDb FROM $testMeasurement WITH KEY IN (key,key1) WHERE ${testWhereClause.get}"
     )
   }

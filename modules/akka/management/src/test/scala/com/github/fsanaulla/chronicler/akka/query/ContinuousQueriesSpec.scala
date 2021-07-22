@@ -23,8 +23,7 @@ import com.github.fsanaulla.chronicler.core.query.ContinuousQueries
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 10.08.17
   */

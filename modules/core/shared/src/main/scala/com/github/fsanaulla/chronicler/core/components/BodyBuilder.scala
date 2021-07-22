@@ -61,8 +61,7 @@ object BodyBuilder {
     override def fromSeqT[T](
         meas: String,
         ts: Seq[T]
-      )(implicit wr: InfluxWriter[T]
-      ): ErrorOr[String] = {
+    )(implicit wr: InfluxWriter[T]): ErrorOr[String] = {
       either.seq(ts.map(wr.write)).mapRight(append(meas, _))
     }
   }

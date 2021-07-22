@@ -27,9 +27,8 @@ import scala.concurrent.{ExecutionContext, Future}
 
 final class AkkaJsonHandler(
     unm: AkkaBodyUnmarshaller
-  )(implicit ex: ExecutionContext,
-    mat: ActorMaterializer)
-  extends JsonHandler[Future, HttpResponse] {
+)(implicit ex: ExecutionContext, mat: ActorMaterializer)
+    extends JsonHandler[Future, HttpResponse] {
 
   override def responseBody(response: HttpResponse): Future[ErrorOr[JValue]] =
     unm(response.entity)

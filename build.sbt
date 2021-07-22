@@ -194,7 +194,7 @@ lazy val ahcShared = projectMatrix
 lazy val udp = projectMatrix
   .in(file("modules/udp"))
   .settings(
-    name := s"$projectName-udp",
+    name := s"$projectName-udp"
   )
   .configure(defaultSettingsWithIt)
   .dependsOn(coreShared)

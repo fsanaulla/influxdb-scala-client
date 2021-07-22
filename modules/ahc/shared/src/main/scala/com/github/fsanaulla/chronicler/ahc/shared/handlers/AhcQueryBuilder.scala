@@ -27,8 +27,8 @@ private[ahc] class AhcQueryBuilder(
     schema: String,
     host: String,
     port: Int,
-    credentials: Option[InfluxCredentials])
-  extends QueryBuilder[Uri](credentials) {
+    credentials: Option[InfluxCredentials]
+) extends QueryBuilder[Uri](credentials) {
 
   override def buildQuery(query: String): Uri =
     Uri(schema, host, port, query)

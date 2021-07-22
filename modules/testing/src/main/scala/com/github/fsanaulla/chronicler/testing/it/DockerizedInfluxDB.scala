@@ -8,7 +8,7 @@ import org.testcontainers.containers.output.ToStringConsumer
 trait DockerizedInfluxDB extends BeforeAndAfterAll { self: Suite =>
 
   protected def version: String = sys.env.getOrElse("INFLUXDB_VERSION", "1.7.3")
-  protected val _influx: InfluxDBContainer[Nothing] = 
+  protected val _influx: InfluxDBContainer[Nothing] =
     new InfluxDBContainer(version).withLogConsumer(new ToStringConsumer)
 
   /** Credentials for influx */

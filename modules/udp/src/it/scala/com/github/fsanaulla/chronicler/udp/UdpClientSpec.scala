@@ -15,8 +15,7 @@ import org.testcontainers.containers.wait.strategy.Wait
 import org.typelevel.jawn.ast.{JArray, JNum, JString}
 import org.scalatest.Ignore
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.comØ
   * Date: 24.02.18
   */

@@ -16,8 +16,7 @@ import org.typelevel.jawn.ast.{JArray, JNum, JString, JValue}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 02.03.18
   */
@@ -136,12 +135,11 @@ class DatabaseApiSpec
     )
 
     db.bulkWriteNative(
-        Seq(
-          "test4,sex=Male,firstName=Jon,lastName=Snow age=24",
-          "test4,sex=Female,firstName=Deny,lastName=Targaryen age=25"
-        )
+      Seq(
+        "test4,sex=Male,firstName=Jon,lastName=Snow age=24",
+        "test4,sex=Female,firstName=Deny,lastName=Targaryen age=25"
       )
-      .futureValue
+    ).futureValue
       .value shouldEqual 204
 
     db.readJson("SELECT * FROM test4")

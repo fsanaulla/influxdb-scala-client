@@ -35,8 +35,7 @@ import org.typelevel.jawn.ast._
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 10.08.17
   */

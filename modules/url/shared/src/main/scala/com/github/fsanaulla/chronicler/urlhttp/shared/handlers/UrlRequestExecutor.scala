@@ -30,10 +30,9 @@ import scala.io.Source
 import scala.util.Try
 
 private[urlhttp] final class UrlRequestExecutor(jsonHandler: JsonHandler[Id, Response])
-  extends RequestExecutor[Try, Response, Url, String] {
+    extends RequestExecutor[Try, Response, Url, String] {
 
-  /**
-    * Execute uri
+  /** Execute uri
     *
     * @param url - request uri
     * @return    - Return wrapper response
@@ -71,7 +70,7 @@ private[urlhttp] final class UrlRequestExecutor(jsonHandler: JsonHandler[Id, Res
       uri: Url,
       body: String,
       gzipped: Boolean
-    ): Try[Response] = {
+  ): Try[Response] = {
     uri.make.flatMap { address =>
       Try {
         val bts              = body.getBytes()

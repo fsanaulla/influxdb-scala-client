@@ -22,8 +22,7 @@ import org.scalatest.{EitherValues, OptionValues, TryValues}
 import org.typelevel.jawn.ast._
 import requests.{Response, ResponseBlob}
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 10.08.17
   */

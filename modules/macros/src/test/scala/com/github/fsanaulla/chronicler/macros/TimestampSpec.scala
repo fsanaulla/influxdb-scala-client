@@ -36,7 +36,7 @@ class TimestampSpec extends AnyWordSpec with Matchers with EitherValues {
           @field age: Int,
           @timestamp time: Long
       )
-      
+
       val epochRd = InfluxReader[GeneralEpochTimestamp]
 
       "epoch time" in {
@@ -122,14 +122,12 @@ class TimestampSpec extends AnyWordSpec with Matchers with EitherValues {
       val rd = InfluxReader[UTCTimestamp]
 
       rd.read(
-          JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
-        )
-        .value shouldEqual UTCTimestamp("Fz", None, 4, "2015-08-04T19:05:14.318570484Z")
+        JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
+      ).value shouldEqual UTCTimestamp("Fz", None, 4, "2015-08-04T19:05:14.318570484Z")
 
       rd.readUnsafe(
-          JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
-        )
-        .shouldEqual(UTCTimestamp("Fz", None, 4, "2015-08-04T19:05:14.318570484Z"))
+        JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
+      ).shouldEqual(UTCTimestamp("Fz", None, 4, "2015-08-04T19:05:14.318570484Z"))
     }
   }
 }

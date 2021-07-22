@@ -20,8 +20,7 @@ import enumeratum.EnumEntry
 
 import scala.collection.immutable
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 29.07.17
   */
@@ -38,5 +37,5 @@ object Precisions extends enumeratum.Enum[Precision] {
   case object Seconds      extends Precision { override val entryName: String = "s"  }
   case object Minutes      extends Precision { override val entryName: String = "m"  }
   case object Hours        extends Precision { override val entryName: String = "h"  }
-  case object None         extends Precision { override val isNone: Boolean   = true }
+  case object None         extends Precision { override val isNone: Boolean = true   }
 }

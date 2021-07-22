@@ -37,10 +37,9 @@ final class AkkaIOClient(
     compress: Boolean,
     httpsContext: Option[HttpsConnectionContext],
     terminateActorSystem: Boolean
-  )(implicit ex: ExecutionContext,
-    system: ActorSystem)
-  extends InfluxAkkaClient(terminateActorSystem, httpsContext)
-  with IOClient[Future, Future, HttpResponse, Uri, RequestEntity] {
+)(implicit ex: ExecutionContext, system: ActorSystem)
+    extends InfluxAkkaClient(terminateActorSystem, httpsContext)
+    with IOClient[Future, Future, HttpResponse, Uri, RequestEntity] {
 
   implicit val mat: ActorMaterializer  = ActorMaterializer()
   implicit val bb: AkkaBodyBuilder     = new AkkaBodyBuilder()
@@ -55,7 +54,7 @@ final class AkkaIOClient(
   override def measurement[A: ClassTag](
       dbName: String,
       measurementName: String
-    ): AkkaMeasurementApi[A] =
+  ): AkkaMeasurementApi[A] =
     new AkkaMeasurementApi[A](dbName, measurementName, compress)
 
   override def ping: Future[ErrorOr[InfluxDBInfo]] = {

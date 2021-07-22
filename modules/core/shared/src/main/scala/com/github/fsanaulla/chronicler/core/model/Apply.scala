@@ -16,8 +16,7 @@
 
 package com.github.fsanaulla.chronicler.core.model
 
-/**
-  * Apply typeclass
+/** Apply typeclass
   *
   * @since 0.5.5
   */

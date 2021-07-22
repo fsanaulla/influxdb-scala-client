@@ -22,4 +22,5 @@ final case class InfluxConfig(
     host: String,
     port: Int = 8086,
     credentials: Option[InfluxCredentials] = None,
-    compress: Boolean = false)
+    compress: Boolean = false
+)

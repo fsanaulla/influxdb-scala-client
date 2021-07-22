@@ -19,8 +19,7 @@ package com.github.fsanaulla.chronicler.macros
 import com.github.fsanaulla.chronicler.core.model.{InfluxReader, InfluxWriter}
 import scala.language.experimental.macros
 
-/**
-  * Auto-derivation object
+/** Auto-derivation object
   */
 package object auto {
   implicit def makeReader[A]: InfluxReader[A] = macro InfluxImpl.reader[A]

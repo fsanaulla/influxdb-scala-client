@@ -17,7 +17,8 @@ trait InfluxFormat {
       @field age: Int,
       @field schooler: Boolean,
       @field city: String,
-      @epoch @timestamp time: Long)
+      @epoch @timestamp time: Long
+  )
 
   val rd: InfluxReader[Test] = InfluxReader[Test]
   val wr: InfluxWriter[Test] = InfluxWriter[Test]

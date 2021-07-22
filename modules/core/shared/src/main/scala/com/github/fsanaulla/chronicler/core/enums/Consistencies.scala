@@ -20,8 +20,7 @@ import enumeratum.EnumEntry
 
 import scala.collection.immutable
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 29.07.17
   */
@@ -36,5 +35,5 @@ object Consistencies extends enumeratum.Enum[Consistency] {
   case object Quorum extends Consistency { override val entryName: String = "quorum" }
   case object All    extends Consistency { override val entryName: String = "all"    }
   case object Any    extends Consistency { override val entryName: String = "any"    }
-  case object None   extends Consistency { override val isNone: Boolean   = true     }
+  case object None   extends Consistency { override val isNone: Boolean = true       }
 }

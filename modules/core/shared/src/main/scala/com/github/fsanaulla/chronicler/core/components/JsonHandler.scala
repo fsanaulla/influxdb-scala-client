@@ -31,7 +31,7 @@ import org.typelevel.jawn.ast.{JArray, JValue}
 
 import scala.reflect.ClassTag
 
-/***
+/** *
   * JSON handler for extracting body, code, headers
   *
   * @tparam F - parsing effect
@@ -39,38 +39,37 @@ import scala.reflect.ClassTag
   */
 abstract class JsonHandler[F[_], R](implicit F: Functor[F]) {
 
-  /***
+  /** *
     * Extract response http code
     */
   def responseCode(response: R): Int
 
-  /***
+  /** *
     * Extract response headers
     */
   def responseHeader(response: R): Seq[(String, String)]
 
-  /***
+  /** *
     * Extracting JSON from Response
     *
     * @param response   - HTTP response
     */
   def responseBody(response: R): F[ErrorOr[JValue]]
 
-  /***
+  /** *
     * Used to extract database info from ping response
     */
   final def databaseInfo(response: R): ErrorOr[InfluxDBInfo] = {
     val headers = responseHeader(response)
     val result = for {
-      build   <- headers.collectFirst { case (k, v) if k.equalsIgnoreCase(buildHeader)   => v }
+      build   <- headers.collectFirst { case (k, v) if k.equalsIgnoreCase(buildHeader) => v }
       version <- headers.collectFirst { case (k, v) if k.equalsIgnoreCase(versionHeader) => v }
     } yield InfluxDBInfo(build, version)
 
     result.toRight(new ParsingException(s"Can't find $buildHeader or $versionHeader"))
   }
 
-  /**
-    * Extract error message from response
+  /** Extract error message from response
     *
     * @param response - Response
     * @return - Error Message
@@ -78,8 +77,7 @@ abstract class JsonHandler[F[_], R](implicit F: Functor[F]) {
   final def responseErrorMsg(response: R): F[ErrorOr[String]] =
     F.map(responseBody(response))(_.mapRight(_.get("error").asString))
 
-  /**
-    * Extract optional error message from response
+  /** Extract optional error message from response
     *
     * @param response - Response JSON body
     * @return - optional error message
@@ -90,8 +88,7 @@ abstract class JsonHandler[F[_], R](implicit F: Functor[F]) {
         .mapRight(_.flatMap(_.get("error").getString))
     }
 
-  /**
-    * Extract influx points from JSON, represented as Arrays
+  /** Extract influx points from JSON, represented as Arrays
     *
     * @param js - JSON value
     * @return - optional array of points
@@ -103,7 +100,7 @@ abstract class JsonHandler[F[_], R](implicit F: Functor[F]) {
         .map(_.flatMap(_.array))
     }
 
-  /***
+  /** *
     * Extract influx point grouped by some criteria
     *
     * @param js - JSON payload
@@ -125,8 +122,7 @@ abstract class JsonHandler[F[_], R](implicit F: Functor[F]) {
         }
       }
 
-  /**
-    * Extract bulk result from JSON
+  /** Extract bulk result from JSON
     *
     * @param js - JSON value
     * @return - Array of points
@@ -138,8 +134,7 @@ abstract class JsonHandler[F[_], R](implicit F: Functor[F]) {
       .map(_.map(_.flatMap(_.array)))
   }
 
-  /**
-    * Extract Measurement name -> Measurement points array
+  /** Extract Measurement name -> Measurement points array
     *
     * @param js - JSON value
     * @return - array of meas name -> meas points
@@ -158,21 +153,18 @@ abstract class JsonHandler[F[_], R](implicit F: Functor[F]) {
       }
   }
 
-  /**
-    * Extract Measurement name and values from it from JSON
+  /** Extract Measurement name and values from it from JSON
     *
     * @param js - JSON value
     * @return - Array of pairs
     */
   final def groupedSystemInfo[T: ClassTag](
       js: JValue
-    )(implicit rd: InfluxReader[T]
-    ): ErrorOr[Array[(String, Array[T])]] = {
+  )(implicit rd: InfluxReader[T]): ErrorOr[Array[(String, Array[T])]] = {
     groupedSystemInfoJs(js) match {
       case Some(arr) =>
-        either.array(arr.map {
-          case (k, v) =>
-            either.array[Throwable, T](v.map(rd.read)).mapRight(k -> _)
+        either.array(arr.map { case (k, v) =>
+          either.array[Throwable, T](v.map(rd.read)).mapRight(k -> _)
         })
       case _ =>
         Right(Array.empty)

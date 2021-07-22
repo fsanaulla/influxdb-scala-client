@@ -16,7 +16,7 @@
 
 package com.github.fsanaulla.chronicler.macros.annotations.reader
 
-/***
+/** *
   * Used with @timestamp annotation to indicate from which time type should be readed
   */
 @scala.annotation.meta.getter

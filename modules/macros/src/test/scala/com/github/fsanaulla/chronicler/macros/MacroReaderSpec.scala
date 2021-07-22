@@ -32,16 +32,14 @@ class MacroReaderSpec extends AnyWordSpec with Matchers with EitherValues {
 
       "with None ignoring time" in {
         rd.read(
-            JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
-          )
-          .value shouldEqual Test("Fz", None, 4)
+          JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
+        ).value shouldEqual Test("Fz", None, 4)
       }
 
       "with Some and ignore time" in {
         rd.read(
-            JArray(Array(JString("2015-08-04T19:05:14Z"), JNum(4), JString("Fz"), JString("Sr")))
-          )
-          .value shouldEqual Test("Fz", Some("Sr"), 4)
+          JArray(Array(JString("2015-08-04T19:05:14Z"), JNum(4), JString("Fz"), JString("Sr")))
+        ).value shouldEqual Test("Fz", Some("Sr"), 4)
       }
 
       case class Test1(
@@ -71,16 +69,14 @@ class MacroReaderSpec extends AnyWordSpec with Matchers with EitherValues {
 
       "with None ignoring time" in {
         rd.readUnsafe(
-            JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
-          )
-          .shouldEqual(Test("Fz", None, 4))
+          JArray(Array(JString("2015-08-04T19:05:14.318570484Z"), JNum(4), JString("Fz"), JNull))
+        ).shouldEqual(Test("Fz", None, 4))
       }
 
       "with Some and ignore time" in {
         rd.readUnsafe(
-            JArray(Array(JString("2015-08-04T19:05:14Z"), JNum(4), JString("Fz"), JString("Sr")))
-          )
-          .shouldEqual(Test("Fz", Some("Sr"), 4))
+          JArray(Array(JString("2015-08-04T19:05:14Z"), JNum(4), JString("Fz"), JString("Sr")))
+        ).shouldEqual(Test("Fz", Some("Sr"), 4))
       }
 
       case class Test1(

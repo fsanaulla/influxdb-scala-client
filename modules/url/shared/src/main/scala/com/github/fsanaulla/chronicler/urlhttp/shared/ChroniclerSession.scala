@@ -22,8 +22,7 @@ import requests.{BaseSession, Compress, RequestAuth}
 
 import scala.collection.mutable
 
-/**
-  * Same as requester base session, with small changes in default headers
+/** Same as requester base session, with small changes in default headers
   */
 class ChroniclerSession extends BaseSession {
   def cookies = mutable.Map.empty[String, HttpCookie]

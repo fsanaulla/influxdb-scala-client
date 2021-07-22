@@ -52,7 +52,6 @@ class AkkaBodyBuilder extends BodyBuilder[RequestEntity] with Appender {
   override def fromSeqT[T](
       meas: String,
       ts: Seq[T]
-    )(implicit wr: InfluxWriter[T]
-    ): ErrorOr[RequestEntity] =
+  )(implicit wr: InfluxWriter[T]): ErrorOr[RequestEntity] =
     either.seq(ts.map(wr.write)).mapRight(append(meas, _))
 }

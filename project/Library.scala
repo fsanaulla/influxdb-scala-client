@@ -1,7 +1,6 @@
 import sbt._
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 28.08.17
   */

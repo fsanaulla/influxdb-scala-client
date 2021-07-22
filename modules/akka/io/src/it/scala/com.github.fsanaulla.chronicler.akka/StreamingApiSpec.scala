@@ -7,7 +7,12 @@ import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.Sink
 import akka.testkit.TestKit
 import com.github.fsanaulla.chronicler.akka.StreamingApiSpec.Point
-import com.github.fsanaulla.chronicler.akka.io.{AkkaDatabaseApi, AkkaIOClient, AkkaMeasurementApi, InfluxIO}
+import com.github.fsanaulla.chronicler.akka.io.{
+  AkkaDatabaseApi,
+  AkkaIOClient,
+  AkkaMeasurementApi,
+  InfluxIO
+}
 import com.github.fsanaulla.chronicler.akka.management.{AkkaManagementClient, InfluxMng}
 import com.github.fsanaulla.chronicler.akka.shared.InfluxConfig
 import com.github.fsanaulla.chronicler.core.either

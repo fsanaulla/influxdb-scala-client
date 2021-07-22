@@ -19,8 +19,7 @@ package com.github.fsanaulla.chronicler.core.query
 import com.github.fsanaulla.chronicler.core.components.QueryBuilder
 import com.github.fsanaulla.chronicler.core.enums.Destination
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 19.08.17
   */
@@ -32,8 +31,7 @@ private[chronicler] trait SubscriptionsManagementQuery[U] {
       rpName: String,
       destinationType: Destination,
       addresses: Seq[String]
-    )(implicit qb: QueryBuilder[U]
-    ): U = {
+  )(implicit qb: QueryBuilder[U]): U = {
 
     val addressesStr = addresses.map(str => s"\'$str\'").mkString(", ")
     qb.buildQuery(
@@ -48,8 +46,7 @@ private[chronicler] trait SubscriptionsManagementQuery[U] {
       subsName: String,
       dbName: String,
       rpName: String
-    )(implicit qb: QueryBuilder[U]
-    ): U =
+  )(implicit qb: QueryBuilder[U]): U =
     qb.buildQuery("/query", qb.appendCredentials(s"DROP SUBSCRIPTION $subsName ON $dbName.$rpName"))
 
   private[chronicler] final def showSubscriptionsQuery(implicit qb: QueryBuilder[U]): U =

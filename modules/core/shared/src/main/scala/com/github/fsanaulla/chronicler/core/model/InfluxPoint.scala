@@ -18,8 +18,7 @@ package com.github.fsanaulla.chronicler.core.model
 
 import com.github.fsanaulla.chronicler.core.implicits.RichString
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 05.08.17
   */
@@ -63,7 +62,8 @@ final case class Point(
     measurement: String,
     tags: List[InfluxTag] = Nil,
     fields: List[InfluxField] = Nil,
-    time: Long = -1L) {
+    time: Long = -1L
+) {
 
   def addTag(key: String, value: String): Point = copy(tags = tags :+ InfluxTag(key, value))
 
@@ -74,9 +74,10 @@ final case class Point(
   def addField(key: String, value: Int): Point    = copy(fields = fields :+ IntField(key, value))
   def addField(key: String, value: Long): Point   = copy(fields = fields :+ LongField(key, value))
   def addField(key: String, value: Double): Point = copy(fields = fields :+ DoubleField(key, value))
-  def addField(key: String, value: Float): Point  = copy(fields = fields :+ DoubleField(key, value.toDouble))
+  def addField(key: String, value: Float): Point =
+    copy(fields = fields :+ DoubleField(key, value.toDouble))
 
-  def addField(key: String, value: BigDecimal): Point = 
+  def addField(key: String, value: BigDecimal): Point =
     copy(fields = fields :+ BigDecimalField(key, value))
 
   def addField(key: String, value: Boolean): Point =

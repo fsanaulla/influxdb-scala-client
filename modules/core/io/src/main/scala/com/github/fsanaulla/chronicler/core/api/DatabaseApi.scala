@@ -25,8 +25,7 @@ import com.github.fsanaulla.chronicler.core.model._
 import com.github.fsanaulla.chronicler.core.query.DatabaseOperationQuery
 import org.typelevel.jawn.ast.JArray
 
-/**
-  * Generic interface for basic database IO operation
+/** Generic interface for basic database IO operation
   *
   * @tparam F - request execution effect
   * @tparam G - response parsing effect
@@ -39,13 +38,14 @@ import org.typelevel.jawn.ast.JArray
 class DatabaseApi[F[_], G[_], R, U, E](
     dbName: String,
     compress: Boolean
-  )(implicit qb: QueryBuilder[U],
+)(implicit
+    qb: QueryBuilder[U],
     bd: BodyBuilder[E],
     re: RequestExecutor[F, R, U, E],
     rh: ResponseHandler[G, R],
     F: Functor[F],
-    FK: FunctionK[G, F])
-  extends DatabaseOperationQuery[U] {
+    FK: FunctionK[G, F]
+) extends DatabaseOperationQuery[U] {
 
   def writeFromFile(
       filePath: Path,
@@ -53,7 +53,7 @@ class DatabaseApi[F[_], G[_], R, U, E](
       consistency: Consistency = Consistencies.None,
       precision: Precision = Precisions.None,
       retentionPolicy: Option[String] = None
-    ): F[ErrorOr[ResponseCode]] = {
+  ): F[ErrorOr[ResponseCode]] = {
     val uri = write(dbName, consistency, precision, retentionPolicy)
     F.flatMap(
       re.post(uri, bd.fromFile(filePath, enc), compress)
@@ -65,7 +65,7 @@ class DatabaseApi[F[_], G[_], R, U, E](
       consistency: Consistency = Consistencies.None,
       precision: Precision = Precisions.None,
       retentionPolicy: Option[String] = None
-    ): F[ErrorOr[ResponseCode]] = {
+  ): F[ErrorOr[ResponseCode]] = {
     val uri = write(dbName, consistency, precision, retentionPolicy)
     F.flatMap(
       re.post(uri, bd.fromString(point), compress)
@@ -77,7 +77,7 @@ class DatabaseApi[F[_], G[_], R, U, E](
       consistency: Consistency = Consistencies.None,
       precision: Precision = Precisions.None,
       retentionPolicy: Option[String] = None
-    ): F[ErrorOr[ResponseCode]] = {
+  ): F[ErrorOr[ResponseCode]] = {
     val uri = write(dbName, consistency, precision, retentionPolicy)
     F.flatMap(
       re.post(uri, bd.fromStrings(points), compress)
@@ -89,7 +89,7 @@ class DatabaseApi[F[_], G[_], R, U, E](
       consistency: Consistency = Consistencies.None,
       precision: Precision = Precisions.None,
       retentionPolicy: Option[String] = None
-    ): F[ErrorOr[ResponseCode]] = {
+  ): F[ErrorOr[ResponseCode]] = {
     val uri = write(dbName, consistency, precision, retentionPolicy)
     F.flatMap(
       re.post(uri, bd.fromPoint(point), compress)
@@ -101,7 +101,7 @@ class DatabaseApi[F[_], G[_], R, U, E](
       consistency: Consistency = Consistencies.None,
       precision: Precision = Precisions.None,
       retentionPolicy: Option[String] = None
-    ): F[Either[Throwable, ResponseCode]] = {
+  ): F[Either[Throwable, ResponseCode]] = {
     val uri = write(dbName, consistency, precision, retentionPolicy)
     F.flatMap(
       re.post(uri, bd.fromPoints(points), compress)
@@ -112,7 +112,7 @@ class DatabaseApi[F[_], G[_], R, U, E](
       query: String,
       epoch: Epoch = Epochs.None,
       pretty: Boolean = false
-    ): F[ErrorOr[Array[JArray]]] = {
+  ): F[ErrorOr[Array[JArray]]] = {
     val uri = singleQuery(dbName, query, epoch, pretty)
     F.flatMap(re.get(uri, compress))(resp => FK(rh.queryResultJson(resp)))
   }
@@ -121,7 +121,7 @@ class DatabaseApi[F[_], G[_], R, U, E](
       queries: Seq[String],
       epoch: Epoch = Epochs.None,
       pretty: Boolean = false
-    ): F[ErrorOr[Array[Array[JArray]]]] = {
+  ): F[ErrorOr[Array[Array[JArray]]]] = {
     val uri = bulkQuery(dbName, queries, epoch, pretty)
     F.flatMap(re.get(uri, compress))(resp => FK(rh.bulkQueryResultJson(resp)))
   }
@@ -130,7 +130,7 @@ class DatabaseApi[F[_], G[_], R, U, E](
       query: String,
       epoch: Epoch = Epochs.None,
       pretty: Boolean = false
-    ): F[ErrorOr[Array[(Tags, Values)]]] = {
+  ): F[ErrorOr[Array[(Tags, Values)]]] = {
     val uri = singleQuery(dbName, query, epoch, pretty)
     F.flatMap(
       re.get(uri, compress)

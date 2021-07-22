@@ -83,7 +83,9 @@ class GroupedApiSpec
         val Success(groupedResult) = db
           .readGroupedJson(sql)
 
-        groupedResult.mapRight(_.map { case (tags, value) => tags.toList -> value.toList }.toList) shouldEqual Right(
+        groupedResult.mapRight(
+          _.map { case (tags, value) => tags.toList -> value.toList }.toList
+        ) shouldEqual Right(
           List(
             (
               List("coyote_creek"),
@@ -117,7 +119,9 @@ class GroupedApiSpec
         val Success(groupedResult) = db
           .readGroupedJson(sql)
 
-        groupedResult.mapRight(_.map { case (tags, value) => tags.toList -> value.toList }.toList) shouldEqual Right(
+        groupedResult.mapRight(
+          _.map { case (tags, value) => tags.toList -> value.toList }.toList
+        ) shouldEqual Right(
           List(
             (
               List("coyote_creek"),

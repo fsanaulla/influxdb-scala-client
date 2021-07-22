@@ -27,8 +27,7 @@ private[chronicler] trait RetentionPolicyManagementQuery[U] {
       replication: Int,
       shardDuration: Option[String],
       default: Boolean = false
-    )(implicit qb: QueryBuilder[U]
-    ): U = {
+  )(implicit qb: QueryBuilder[U]): U = {
     val sb = new StringBuilder()
 
     sb.append("CREATE RETENTION POLICY ")
@@ -52,8 +51,7 @@ private[chronicler] trait RetentionPolicyManagementQuery[U] {
   private[chronicler] final def dropRPQuery(
       rpName: String,
       dbName: String
-    )(implicit qb: QueryBuilder[U]
-    ): U =
+  )(implicit qb: QueryBuilder[U]): U =
     qb.buildQuery("/query", qb.appendCredentials(s"DROP RETENTION POLICY $rpName ON $dbName"))
 
   private[chronicler] final def updateRPQuery(
@@ -63,8 +61,7 @@ private[chronicler] trait RetentionPolicyManagementQuery[U] {
       replication: Option[Int],
       shardDuration: Option[String],
       default: Boolean = false
-    )(implicit qb: QueryBuilder[U]
-    ): U = {
+  )(implicit qb: QueryBuilder[U]): U = {
     val sb = new StringBuilder()
 
     sb.append("ALTER RETENTION POLICY ")

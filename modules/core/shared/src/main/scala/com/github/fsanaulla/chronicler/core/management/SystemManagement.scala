@@ -19,15 +19,13 @@ package com.github.fsanaulla.chronicler.core.management
 import com.github.fsanaulla.chronicler.core.alias.ErrorOr
 import com.github.fsanaulla.chronicler.core.model.InfluxDBInfo
 
-/**
-  * Basic system related management operations
+/** Basic system related management operations
   *
   * @tparam F - Response container type
   */
 trait SystemManagement[F[_]] {
 
-  /**
-    * Method for checking InfluxDB status
+  /** Method for checking InfluxDB status
     *
     * @return - Write result with status information
     */

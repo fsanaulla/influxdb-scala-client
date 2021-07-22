@@ -22,8 +22,7 @@ import com.github.fsanaulla.chronicler.urlhttp.shared.implicits.{tryFunctor, url
 
 object InfluxMng {
 
-  /**
-    * Retrieve InfluxDB management client, without IO functionality
+  /** Retrieve InfluxDB management client, without IO functionality
     *
     * @param host        - hostname
     * @param port        - port value
@@ -34,11 +33,10 @@ object InfluxMng {
       host: String,
       port: Int = 8086,
       credentials: Option[InfluxCredentials] = None
-    ): UrlManagementClient =
+  ): UrlManagementClient =
     new UrlManagementClient(host, port, credentials)
 
-  /**
-    * Retrieve management InfluxDB client, without IO functionality using [[InfluxConfig]]
+  /** Retrieve management InfluxDB client, without IO functionality using [[InfluxConfig]]
     *
     * @param conf - configuration object
     * @return     - [[UrlManagementClient]]

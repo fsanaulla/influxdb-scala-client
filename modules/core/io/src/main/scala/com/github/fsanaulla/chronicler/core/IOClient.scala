@@ -21,8 +21,7 @@ import com.github.fsanaulla.chronicler.core.management.SystemManagement
 
 import scala.reflect.ClassTag
 
-/**
-  * Define necessary methods for providing IO operations
+/** Define necessary methods for providing IO operations
   *
   * @tparam F - request execution effect
   * @tparam G - response parser effect
@@ -35,16 +34,14 @@ trait IOClient[F[_], G[_], R, U, E] extends SystemManagement[F] with AutoCloseab
   type Database       = DatabaseApi[F, G, R, U, E]
   type Measurement[A] = MeasurementApi[F, G, R, U, E, A]
 
-  /**
-    * Get database instant
+  /** Get database instant
     *
     * @param dbName - database name
     * @return       - Backend related implementation of DatabaseApi
     */
   def database(dbName: String): Database
 
-  /**
-    * Get measurement instance with execution type A
+  /** Get measurement instance with execution type A
     *
     * @param dbName          - on which database
     * @param measurementName - which measurement

@@ -24,4 +24,5 @@ final case class InfluxConfig(
     port: Int = 8086,
     credentials: Option[InfluxCredentials] = None,
     compress: Boolean = false,
-    asyncClientConfig: Option[AsyncHttpClientConfig] = None)
+    asyncClientConfig: Option[AsyncHttpClientConfig] = None
+)

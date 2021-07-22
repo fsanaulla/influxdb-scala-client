@@ -22,7 +22,11 @@ import com.github.fsanaulla.chronicler.core.components.ResponseHandler
 import com.github.fsanaulla.chronicler.core.implicits.{applyId, functorId}
 import com.github.fsanaulla.chronicler.core.model.{InfluxCredentials, InfluxDBInfo}
 import com.github.fsanaulla.chronicler.urlhttp.shared.Url
-import com.github.fsanaulla.chronicler.urlhttp.shared.handlers.{UrlJsonHandler, UrlQueryBuilder, UrlRequestExecutor}
+import com.github.fsanaulla.chronicler.urlhttp.shared.handlers.{
+  UrlJsonHandler,
+  UrlQueryBuilder,
+  UrlRequestExecutor
+}
 import com.github.fsanaulla.chronicler.urlhttp.shared.implicits._
 import requests.Response
 
@@ -33,8 +37,8 @@ final class UrlIOClient(
     host: String,
     port: Int,
     credentials: Option[InfluxCredentials],
-    compress: Boolean)
-  extends IOClient[Try, Id, Response, Url, String] {
+    compress: Boolean
+) extends IOClient[Try, Id, Response, Url, String] {
 
   val jsonHandler                                = new UrlJsonHandler(compress)
   implicit val qb: UrlQueryBuilder               = new UrlQueryBuilder(host, port, credentials)
@@ -47,7 +51,7 @@ final class UrlIOClient(
   override def measurement[A: ClassTag](
       dbName: String,
       measurementName: String
-    ): UrlMeasurementApi[A] =
+  ): UrlMeasurementApi[A] =
     new UrlMeasurementApi(dbName, measurementName, compress)
 
   override def ping: Try[ErrorOr[InfluxDBInfo]] = {

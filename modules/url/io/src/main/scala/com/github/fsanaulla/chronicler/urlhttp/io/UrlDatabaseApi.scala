@@ -30,16 +30,16 @@ import scala.util.Try
 final class UrlDatabaseApi(
     dbName: String,
     compress: Boolean
-  )(implicit qb: UrlQueryBuilder,
+)(implicit
+    qb: UrlQueryBuilder,
     bd: BodyBuilder[String],
     re: UrlRequestExecutor,
     rh: ResponseHandler[Id, Response],
     F: Functor[Try],
-    FK: FunctionK[Id, Try])
-  extends DatabaseApi[Try, Id, Response, Url, String](dbName, compress) {
+    FK: FunctionK[Id, Try]
+) extends DatabaseApi[Try, Id, Response, Url, String](dbName, compress) {
 
-  /**
-    * Chunked query execution with json response
+  /** Chunked query execution with json response
     *
     * @param query     - influx compatible SQL query
     * @param epoch     - epoch timestamp precision
@@ -48,14 +48,13 @@ final class UrlDatabaseApi(
     * @return          - chunks iterator
     *
     * @since           - 0.5.2
-    *
-    * */
+    */
   def readChunkedJson(
       query: String,
       epoch: Epoch = Epochs.None,
       pretty: Boolean = false,
       chunkSize: Int = 10000
-    ): Try[Iterator[ErrorOr[Array[JPoint]]]] = {
+  ): Try[Iterator[ErrorOr[Array[JPoint]]]] = {
     val uri = chunkedQuery(dbName, query, epoch, pretty, chunkSize)
     re.getStream(uri)
   }

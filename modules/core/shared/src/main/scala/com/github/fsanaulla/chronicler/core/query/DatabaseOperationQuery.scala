@@ -19,8 +19,7 @@ package com.github.fsanaulla.chronicler.core.query
 import com.github.fsanaulla.chronicler.core.components.QueryBuilder
 import com.github.fsanaulla.chronicler.core.enums.{Consistency, Epoch, Precision}
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 27.08.17
   */
@@ -29,14 +28,14 @@ trait DatabaseOperationQuery[U] {
   private[this] def addPrettyQueryParam(
       pretty: Boolean,
       queryParams: List[(String, String)]
-    ): List[(String, String)] =
+  ): List[(String, String)] =
     if (!pretty) queryParams
     else ("pretty" -> pretty.toString) :: queryParams
 
   private[this] def addEpochQueryParam(
       epoch: Epoch,
       queryParams: List[(String, String)]
-    ): List[(String, String)] =
+  ): List[(String, String)] =
     if (epoch.isNone) queryParams
     else ("epoch" -> epoch.toString) :: queryParams
 

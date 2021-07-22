@@ -21,8 +21,7 @@ import com.github.fsanaulla.chronicler.urlhttp.shared.InfluxConfig
 
 object InfluxIO {
 
-  /**
-    * Retrieve IO InfluxDB client, without management functionality.
+  /** Retrieve IO InfluxDB client, without management functionality.
     * See https://github.com/softwaremill/sttp/issues/114 to understand how to configure secured connection
     *
     * @param host        - hostname
@@ -36,11 +35,10 @@ object InfluxIO {
       port: Int = 8086,
       credentials: Option[InfluxCredentials] = None,
       compress: Boolean = false
-    ): UrlIOClient =
+  ): UrlIOClient =
     new UrlIOClient(host, port, credentials, compress)
 
-  /**
-    * Retrieve IO InfluxDB client, without management functionality using configuration object
+  /** Retrieve IO InfluxDB client, without management functionality using configuration object
     *
     * @param conf - configuration object
     * @return     - [[UrlIOClient]]

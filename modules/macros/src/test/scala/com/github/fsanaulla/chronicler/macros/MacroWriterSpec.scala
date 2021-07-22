@@ -72,7 +72,9 @@ class MacroWriterSpec extends AnyWordSpec with Matchers with EitherValues {
 
       val wr1: InfluxWriter[WithDouble] = InfluxWriter[WithDouble]
       wr1
-        .write(WithDouble("nm", Some("sn"), 65.4, "Berkly", 1438715114318570484L)) shouldEqual Right(
+        .write(
+          WithDouble("nm", Some("sn"), 65.4, "Berkly", 1438715114318570484L)
+        ) shouldEqual Right(
         "name=nm,surname=sn mark=65.4,school=\"Berkly\" 1438715114318570484"
       )
 
@@ -86,7 +88,9 @@ class MacroWriterSpec extends AnyWordSpec with Matchers with EitherValues {
 
       val wr2: InfluxWriter[WithDoubleAsASecondField] = InfluxWriter[WithDoubleAsASecondField]
       wr2
-        .write(WithDoubleAsASecondField("nm", Some("sn"), 1, 65.4, 1438715114318570484L)) shouldEqual Right(
+        .write(
+          WithDoubleAsASecondField("nm", Some("sn"), 1, 65.4, 1438715114318570484L)
+        ) shouldEqual Right(
         "name=nm,surname=sn age=1i,mark=65.4 1438715114318570484"
       )
     }

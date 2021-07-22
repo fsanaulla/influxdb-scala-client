@@ -18,8 +18,7 @@ package com.github.fsanaulla.chronicler.core.query
 
 import com.github.fsanaulla.chronicler.core.components.QueryBuilder
 
-/**
-  * Created by fayaz on 27.06.17.
+/** Created by fayaz on 27.06.17.
   */
 private[chronicler] trait DataManagementQuery[U] {
 
@@ -29,14 +28,15 @@ private[chronicler] trait DataManagementQuery[U] {
       replication: Option[Int],
       shardDuration: Option[String],
       rpName: Option[String]
-    )(implicit qb: QueryBuilder[U]
-    ): U = {
+  )(implicit qb: QueryBuilder[U]): U = {
 
     val sb = new StringBuilder()
 
     sb.append(s"CREATE DATABASE $dbName")
 
-    if (duration.isDefined || replication.isDefined || shardDuration.isDefined || rpName.isDefined) {
+    if (
+      duration.isDefined || replication.isDefined || shardDuration.isDefined || rpName.isDefined
+    ) {
       sb.append(" WITH")
     }
 
@@ -65,8 +65,7 @@ private[chronicler] trait DataManagementQuery[U] {
   private[chronicler] final def dropSeriesQuery(
       dbName: String,
       seriesName: String
-    )(implicit qb: QueryBuilder[U]
-    ): U =
+  )(implicit qb: QueryBuilder[U]): U =
     qb.buildQuery(
       "/query",
       qb.appendCredentials(dbName, s"DROP SERIES FROM $seriesName")
@@ -75,8 +74,7 @@ private[chronicler] trait DataManagementQuery[U] {
   private[chronicler] final def dropMeasurementQuery(
       dbName: String,
       measurementName: String
-    )(implicit qb: QueryBuilder[U]
-    ): U =
+  )(implicit qb: QueryBuilder[U]): U =
     qb.buildQuery(
       "/query",
       qb.appendCredentials(dbName, s"DROP MEASUREMENT $measurementName")
@@ -85,8 +83,7 @@ private[chronicler] trait DataManagementQuery[U] {
   private[chronicler] final def deleteAllSeriesQuery(
       dbName: String,
       seriesName: String
-    )(implicit qb: QueryBuilder[U]
-    ): U =
+  )(implicit qb: QueryBuilder[U]): U =
     qb.buildQuery(
       "/query",
       qb.appendCredentials(dbName, s"DELETE FROM $seriesName")
@@ -94,8 +91,7 @@ private[chronicler] trait DataManagementQuery[U] {
 
   private[chronicler] final def showMeasurementQuery(
       dbName: String
-    )(implicit qb: QueryBuilder[U]
-    ): U =
+  )(implicit qb: QueryBuilder[U]): U =
     qb.buildQuery("/query", qb.appendCredentials(dbName, s"SHOW MEASUREMENTS"))
 
   private[chronicler] final def showDatabasesQuery(implicit qb: QueryBuilder[U]): U =
@@ -104,8 +100,7 @@ private[chronicler] trait DataManagementQuery[U] {
   private[chronicler] final def showFieldKeysQuery(
       dbName: String,
       measurementName: String
-    )(implicit qb: QueryBuilder[U]
-    ): U =
+  )(implicit qb: QueryBuilder[U]): U =
     qb.buildQuery(
       "/query",
       qb.appendCredentials(s"SHOW FIELD KEYS ON $dbName FROM $measurementName")
@@ -117,8 +112,7 @@ private[chronicler] trait DataManagementQuery[U] {
       whereClause: Option[String],
       limit: Option[Int],
       offset: Option[Int]
-    )(implicit qb: QueryBuilder[U]
-    ): U = {
+  )(implicit qb: QueryBuilder[U]): U = {
     val sb = new StringBuilder()
 
     sb.append("SHOW TAG KEYS ON ")
@@ -148,8 +142,7 @@ private[chronicler] trait DataManagementQuery[U] {
       whereClause: Option[String],
       limit: Option[Int],
       offset: Option[Int]
-    )(implicit qb: QueryBuilder[U]
-    ): U = {
+  )(implicit qb: QueryBuilder[U]): U = {
     require(withKey.nonEmpty, "Keys can't be empty")
 
     val sb = new StringBuilder()

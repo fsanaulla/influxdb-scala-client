@@ -20,8 +20,7 @@ import enumeratum.EnumEntry
 
 import scala.collection.immutable
 
-/**
-  * Created by
+/** Created by
   * Author: fayaz.sanaulla@gmail.com
   * Date: 29.07.17
   */
@@ -38,5 +37,5 @@ object Epochs extends enumeratum.Enum[Epoch] {
   case object Seconds      extends Epoch { override val entryName: String = "s"  }
   case object Minutes      extends Epoch { override val entryName: String = "m"  }
   case object Hours        extends Epoch { override val entryName: String = "h"  }
-  case object None         extends Epoch { override val isNone: Boolean   = true }
+  case object None         extends Epoch { override val isNone: Boolean = true   }
 }

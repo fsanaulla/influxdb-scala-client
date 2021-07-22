@@ -16,7 +16,7 @@
 
 package com.github.fsanaulla.chronicler.macros.annotations
 
-/***
+/** *
   * Marker for declaring influx point tag's. Can be only String.
   */
 // https://issues.scala-lang.org/browse/SI-7561
