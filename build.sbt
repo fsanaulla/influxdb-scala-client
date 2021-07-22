@@ -82,7 +82,7 @@ lazy val coreShared = projectMatrix
   .settings(
     name := s"$projectName-core-shared",
     libraryDependencies ++= List(
-      "com.beachape"  %% "enumeratum" % "1.6.1",
+      "com.beachape"  %% "enumeratum" % "1.7.0",
       "org.typelevel" %% "jawn-ast"   % "0.14.3"
     ) ++ Library.coreTestDeps
   )
