@@ -8,7 +8,7 @@ import sbt._
 object Library {
 
   object Versions {
-    val request = "0.2.0"
+    val request = "0.6.9"
 
     object Akka {
       val akka     = "2.5.32"
