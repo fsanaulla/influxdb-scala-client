@@ -12,7 +12,7 @@ object Library {
 
     object Akka {
       val akka     = "2.5.32"
-      val akkaHttp = "10.1.13"
+      val akkaHttp = "10.1.14"
     }
 
     object Testing {
