@@ -16,7 +16,7 @@ object Library {
     }
 
     object Testing {
-      val scalaTest            = "3.2.3"
+      val scalaTest            = "3.2.9"
       val scalaCheck           = "1.14.0"
       val scalaCheckGenerators = "0.2.0"
     }
